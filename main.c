@@ -4,6 +4,7 @@
 #include <string.h>
 #include <time.h>
 #include <unistd.h>
+#include <sys/stat.h>
 
 size_t write_data(void *ptr, size_t size, size_t nmemb, FILE *stream) {
   return fwrite(ptr, size, nmemb, stream);
@@ -30,10 +31,11 @@ int main(int argc, char *argv[]) {
   snprintf(symlinkpath, sizeof(symlinkpath),
            "%s/.local/share/wallpapers/latest.png", home);
 
-  char command_mkdir[600];
-  snprintf(command_mkdir, sizeof(command_mkdir),
-           "mkdir -p %s/.local/share/wallpapers", home);
-  system(command_mkdir);
+  char wallpaper_folder[600];
+  snprintf(wallpaper_folder, sizeof(wallpaper_folder),
+           "%s/.local/share/wallpapers", home);
+
+  mkdir(wallpaper_folder, 0777);
 
   for (int i = 1; i < argc; i++) {
     if (strcmp(argv[i], "-o") == 0 && i + 1 < argc) {

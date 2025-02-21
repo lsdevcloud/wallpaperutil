@@ -2,10 +2,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <sys/stat.h>
 #include <time.h>
 #include <unistd.h>
-#include <sys/stat.h>
-
 /**
 * ⠀⢸⠂⠀⠀⠀⠘⣧⠀⠀⣟⠛⠲⢤⡀⠀⠀⣰⠏⠀⠀⠀⠀⠀⢹⡀
 ⠀⡿⠀⠀⠀⠀⠀⠈⢷⡀⢻⡀⠀⠀⠙⢦⣰⠏⠀⠀⠀⠀⠀⠀⢸⠀
@@ -33,7 +32,8 @@ size_t write_data(void *ptr, size_t size, size_t nmemb, FILE *stream) {
 int main(int argc, char *argv[]) {
   if (argc < 2 || argc > 6) {
     fprintf(stderr,
-            "Usage: %s [-o output_path] [-s symlink_path] <image_url>\n",
+            "Usage: %s [-o output_path] [-s symlink_path] [-c command]"
+            "<image_url>\n",
             argv[0]);
     return 1;
   }
@@ -41,6 +41,7 @@ int main(int argc, char *argv[]) {
   const char *url = NULL;
   char filepath[512] = "";
   char symlinkpath[512] = "";
+  char fehcommand[512] = "feh --bg-scale %s";
 
   const char *home = getenv("HOME");
   if (home == NULL) {
@@ -64,6 +65,9 @@ int main(int argc, char *argv[]) {
     } else if (strcmp(argv[i], "-s") == 0 && i + 1 < argc) {
       strncpy(symlinkpath, argv[++i], sizeof(symlinkpath) - 1);
       symlinkpath[sizeof(symlinkpath) - 1] = '\0';
+    } else if (strcmp(argv[i], "-c") == 0 && i + 1 < argc) {
+      strncpy(fehcommand, argv[++i], sizeof(fehcommand) - 1);
+      fehcommand[sizeof(fehcommand) - 1] = '\0';
     } else {
       url = argv[i];
     }
@@ -113,13 +117,14 @@ int main(int argc, char *argv[]) {
   }
 
   char command[600];
-  snprintf(command, sizeof(command), "feh --bg-scale %s", filepath);
+  snprintf(command, sizeof(command), fehcommand, filepath);
   int ret = system(command);
   if (ret != 0) {
-    fprintf(stderr, "Failed to set wallpaper with feh.\n");
+    fprintf(stderr, "Failed to set wallpaper.\n");
     return 1;
   }
 
   printf("Wallpaper set successfully!\n");
+
   return 0;
 }

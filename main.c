@@ -59,7 +59,32 @@ int main(int argc, char *argv[]) {
   mkdir(wallpaper_folder, 0777);
 
   for (int i = 1; i < argc; i++) {
-    if (strcmp(argv[i], "-o") == 0 && i + 1 < argc) {
+    if (strcmp(argv[i], "-v") == 0) {
+      fprintf(stdout, "wallpaperutil v1.1\n");
+#include <stdio.h>
+
+      printf("⠀⠁⠀⠀⠀⠀⠀⣠⢄⡀⣀⣄⡀⡀⣀⡀⣈⠁⠀⠀⠀⠉⠀⠀\n");
+      printf("⠀⠀⠀⠰⢡⠀⠀⠓⠛⠋⠛⠘⠃⠽⠙⠚ ⠀⢀⠎⡄⠀⠀\n");
+      printf("⠀⠀⠀⡇⠀⠑⢄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⡠⠂⠁⠀⢡⠀⠀\n");
+      printf("⠀⠀⢰⠁⠀⠀⠀⠑⢄⠀⠏⠐⠠⢀⠀⢀⠎⠀⠀⠀⠀⢸⠀⠀\n");
+      printf("⠀⠀⢸⠀⠀⠀⠀⠀⢀⡡⠼⠀⠀⠀⠈⠪⠀⠀⠀⠀⠀⠘⡀⠀\n");
+      printf("⠀⠀⢸⠀⠀⠀⠀⠀⠉⠁⠀⠀⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⡇⠀               _ _                       "
+             "            _   _ _\n");
+      printf("⠀⠀⠸⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣀⣀⣀⡀⠀⠀⡰⠀⠀__      ____ _| | |_ __   __ _ _ __   "
+             "___ _ __ _   _| |_(_) |\n");
+      printf("⠀⠠⡀⢑⣄⢠⠁⢸⣿⣿⡇⠀⠀⠀⣿⣿⠇⠈⡄⠀⠴⠤⡄⠀\\ \\ /\\ / / _` | | | '_ \\ / _` | '_ "
+             "\\ / _ "
+             "\\ '__| | | | __| | |\n");
+      printf("⠀⠀⠈⢠⠀⢸⡀⠀⠻⠟⠀⠀⠀⠀⠙⠛⠀⢀⢇⠀⡄⠃⠀⠀ \\ V  V / (_| | | | |_) | (_| | |_) |  "
+             "__/ |  | |_| | |_| | |\n");
+      printf("⠀⠀⠀⡌⠐⠙⠈⠀⠀⠠⣄⡰⠤⠤⠂⠀⠀⠘⠁⠀⠘⡄⠀⠀  \\_/\\_/ \\__,_|_|_| .__/ \\__,_| .__/ "
+             "\\___|_|   \\__,_|\\__|_|_|\n");
+      printf("⠀⠀⠀⠉⠉⠁⠒⡠⣄⣀⠀⠀⠀⠀⠀⠠⡄⠒⠀⠀⠉⠀⠀⠀                  |_|         |_|\n");
+      fprintf(stdout, "Source code available at "
+                      "https://github.com/lsdevcloud/wallpaperutil\n");
+
+      return 0;
+    } else if (strcmp(argv[i], "-o") == 0 && i + 1 < argc) {
       strncpy(filepath, argv[++i], sizeof(filepath) - 1);
       filepath[sizeof(filepath) - 1] = '\0';
     } else if (strcmp(argv[i], "-s") == 0 && i + 1 < argc) {

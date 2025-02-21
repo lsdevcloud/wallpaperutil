@@ -15,13 +15,14 @@ A symlink to the latest downloaded wallpaper is created at:
 ## **Usage**
 
 ```sh
-wallpaperutil [-o <output_path>] [-s <symlink_path>] <image_url>
+wallpaperutil [-o <output_path>] [-s <symlink_path>] [-c <command>] <image_url>
 ```
 
 ### **Flags:**
 
 - `-o <output_path>` → Specifies the destination for the downloaded image.
 - `-s <symlink_path>` → Specifies the destination for the symlink to the downloaded image.
+- `-c <command>` → Specifies the command to be executed to set the wallpaper (placeholder for image path is '%s').
 
 ## **Compilation**
 
